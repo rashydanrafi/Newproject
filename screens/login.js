@@ -2,8 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, Alert, TextInput } from "react-native";
 import { Value } from "react-native-reanimated";
-import * as firebase from "firebase";
-import auth from "@react-native-firebase/auth";
+// import * as firebase from "firebase";
+// import auth from "@react-native-firebase/auth";
+import app from "../config/db";
 
 export default function Home({ navigation }) {
   const [name, SetName] = useState(null);
@@ -11,14 +12,16 @@ export default function Home({ navigation }) {
   const [pass, SetPass] = useState(null);
 
   //Function to signup user -- Takes the value of emails initialized on line 10 and pass initialized on line 11
-  const signUpUser = () => {
+  const signUpUser = async () => {
     try {
       if (pass.length < 6) {
         alert("Please enter atleast 6 characters");
         return;
       }
       //emails and pass from state initialized from lines 10 & 11
-      firebase.auth().createUserWithEmailAndPassword(emails, pass);
+      // firebase.auth().createUserWithEmailAndPassword(emails, pass);
+      await app.auth().createUserWithEmailAndPassword(emails, pass);
+      // console.log(emails);
     } catch (error) {
       console.log(error.toString());
     }

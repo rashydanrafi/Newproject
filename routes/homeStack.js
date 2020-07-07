@@ -1,21 +1,19 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
-import Home from '../screens/home';
-import Register from '../screens/register';
-
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
+import Home from "../screens/home";
+import Register from "../screens/register";
+import Login from "../screens/login";
 
 const screens = {
+  Home: {
+    screen: Login,
+  },
 
-    Home: {
-        screen: Home
-    },
-    
+  Register: {
+    screen: Register,
+  },
+};
 
-    Register: {
-        screen: Register
-    },
-}
+const HomeStack = createStackNavigator(screens);
 
-const HomeStack = createStackNavigator (screens);
-
-export default createAppContainer (HomeStack);
+export default createAppContainer(HomeStack);
